@@ -53,8 +53,10 @@ User-friendly menu-driven interface,
 - Run the application to start the program.
 - Users are prompted to sign up or sign in.
 - Access is role-based:
+
   **Developers/Admins**
   - Add, view, modify, and delete songs in the database.
+  
   **Users**
   - Search songs by title or artist name.
 - All searches are case-insensitive.
