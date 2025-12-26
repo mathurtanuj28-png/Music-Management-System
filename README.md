@@ -16,7 +16,7 @@ Input validation for age,
 # Songs Management System 1 
 
 Overview :
-This module is designed for developers/admins to manage a song database using CRUD operations.
+This module is designed for developers to manage a song database.
 
 Features :
 Load song data from a file,
@@ -37,4 +37,26 @@ Search all songs by a specific artist,
 Case-insensitive search,
 User-friendly menu-driven interface,
 
+# Project Structure
+- User Signup & Sign-in & Authentication.py  :
+  Handles user registration, login, and validation
+- Songs Management System 1.py :  
+  Admin CRUD operations for managing the song database
+- Songs Management System 2.py  :
+  User-facing song search functionality
+
+# Branches
+- The whole project is maintained under a single repository.
+- The song management systems and the user sign-in & signup & authentication was created and the pulled to the main code using the pull request.
+
+# Usage Guide
+- Run the application to start the program.
+- Users are prompted to sign up or sign in.
+- Access is role-based:
+  **Developers/Admins**
+  - Add, view, modify, and delete songs in the database.
+  **Users**
+  - Search songs by title or artist name.
+- All searches are case-insensitive.
+- The application uses a clear, menu-driven interface.
 
