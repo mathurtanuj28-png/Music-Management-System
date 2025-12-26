@@ -1,0 +1,112 @@
+def load_data(database):
+    print("Loading Data")
+    filename = input("Enter the file name to load songs: ")
+    try:
+        with open(filename, "r") as file:
+            for line in file:
+                line = line.strip()
+                if not line:
+                    continue
+                parts = [p.strip().strip('"') for p in line.split(",")]
+                title, artist, album, genre, duration = parts
+
+                song = {
+                    "Title": title,
+                    "Album": album,
+                    "Genre": genre,
+                    "Duration": duration
+                }
+
+                if artist not in database:
+                    database[artist] = []
+                database[artist].append(song)
+
+        print(f"Songs loaded from {filename}.")
+    except FileNotFoundError:
+        print("Error: File not found.")
+
+def view_database(database):
+    print("Viewing Database")
+    if not database:
+        print("No song data loaded.")
+        return
+    print("\nSongs Database:")
+    print("Title                          Artist                       Genre")
+    print("=======================================================================")
+    for artist in database:
+        for song in database[artist]:
+            t = f'"{song["Title"]}"'
+            a = f'"{artist}"'
+            g = f'"{song["Genre"]}"'
+            print(f"{t:<31}{a:<29}{g}")
+
+def delete_song(database):
+    print("Deleting a Song")
+    artist = input("Enter the artist's name of the song to delete: ").strip('"')
+    print()
+    title = input("Enter the title of the song to delete: ").strip('"')
+
+    if artist in database:
+        for song in database[artist]:
+            if song["Title"] == title:
+                database[artist].remove(song)
+                if not database[artist]:
+                    del database[artist]
+                print(f'Deleted "{title}" by "{artist}" from the database.')
+                return
+    print("Song not found.")
+
+def modify_song(database):
+    print("Modifying a Song")
+    artist = input("Enter the artist's name of the song to modify: ").strip('"')
+    print()
+    title = input("Enter the title of the song to modify: ").strip('"')
+    if artist in database:
+        for song in database[artist]:
+            if song["Title"] == title:
+                print("\nCurrent details:")
+                print(
+                    f'Title: "{song["Title"]}", Album: "{song["Album"]}", '
+                    f'Genre: "{song["Genre"]}", Duration: "{song["Duration"]}"'
+                )
+                new_album = input("\nEnter new album (or press Enter to keep current): ").strip('"')
+                new_genre = input("Enter new genre (or press Enter to keep current): ").strip('"')
+                new_duration = input("Enter new duration (or press Enter to keep current): ").strip('"')
+
+                if new_album:
+                    song["Album"] = new_album
+                if new_genre:
+                    song["Genre"] = new_genre
+                if new_duration:
+                    song["Duration"] = new_duration
+
+                print(f'Modified "{title}" by "{artist}".')
+                return
+    print("Song not found.")
+
+def main():
+    database = {}
+    while True:
+        print("\nDeveloper Menu:")
+        print("1. Load Song Data")
+        print("2. View Songs Database")
+        print("3. Delete a Song")
+        print("4. Modify a Song")
+        print("5. Exit")
+
+        choice = input("\nSelect an option: ")
+
+        if choice == "1":
+            load_data(database)
+        elif choice == "2":
+            view_database(database)
+        elif choice == "3":
+            delete_song(database)
+        elif choice == "4":
+            modify_song(database)
+        elif choice == "5":
+            print("Exiting the application. Goodbye!")
+            break
+
+if __name__ == "__main__":
+    main()
