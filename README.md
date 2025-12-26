@@ -1,6 +1,18 @@
 # Music-Management-System
 This Spotify-style music management system enables users to efficiently manage and explore songs. It allows adding, editing, modifying, and deleting songs in the database, while also providing quick search functionality by song title or artist name
 
+User 
+
+Overview :
+This module implements a basic user authentication system with signup and sign-in functionality using an in-memory dictionary.
+
+Features :
+Preloaded user accounts
+New user registration (Signup)
+Existing user login (Sign-in)
+Email-based user identification
+Input validation for age
+
 Songs Management System 1 
 
 Overview :
